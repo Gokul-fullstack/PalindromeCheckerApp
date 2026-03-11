@@ -1,19 +1,32 @@
+public class PalindromeCheckerApp{
 
-void main() {
-    String input = "A man a plan a canal Panama";
+    public static void main(String[] args) {
 
-    String normalized = input.replaceAll("[^a-zA-Z]", "").toLowerCase();
+        String input = "level";
 
-    boolean isPalindrome = true;
+        PalindromeService service = new PalindromeService();
+        boolean result = service.checkPalindrome(input);
 
-    for(int i=0;i<normalized.length()/2;i++){
-        if(normalized.charAt(i) !=
-                normalized.charAt(normalized.length()-1-i)){
-            isPalindrome = false;
-            break;
-        }
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + result);
     }
+}
 
-    System.out.println("Input : " + input);
-    System.out.println("Is Palindrome? : " + isPalindrome);
+class PalindromeService {
+
+    public boolean checkPalindrome(String input) {
+
+        int start = 0;
+        int end = input.length() - 1;
+
+        while(start < end){
+            if(input.charAt(start) != input.charAt(end)){
+                return false;
+            }
+            start++;
+            end--;
+        }
+
+        return true;
+    }
 }
