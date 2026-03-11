@@ -1,15 +1,14 @@
+
 void main() {
-    String input = "madam";
+    String input = "A man a plan a canal Panama";
 
-    LinkedList<Character> list = new LinkedList<>();
-
-    for (char c : input.toCharArray())
-        list.add(c);
+    String normalized = input.replaceAll("[^a-zA-Z]", "").toLowerCase();
 
     boolean isPalindrome = true;
 
-    while (list.size() > 1) {
-        if (list.removeFirst() != list.removeLast()) {
+    for(int i=0;i<normalized.length()/2;i++){
+        if(normalized.charAt(i) !=
+                normalized.charAt(normalized.length()-1-i)){
             isPalindrome = false;
             break;
         }
