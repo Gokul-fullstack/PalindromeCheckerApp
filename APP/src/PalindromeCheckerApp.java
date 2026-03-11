@@ -1,61 +1,17 @@
-import java.util.*;
+class PalindromeCheckerApp {
 
-public class PalindromeCheckerApp {
+    static boolean check(String s, int start, int end){
+        if(start >= end) return true;
+        if(s.charAt(start) != s.charAt(end)) return false;
+        return check(s, start+1, end-1);
+    }
 
     public static void main(String[] args) {
+        String input = "madam";
 
-        String input = "level";
-
-        // Choose strategy
-        PalindromeStrategy strategy = new StackStrategy();
-        // You can change to new DequeStrategy();
-
-        boolean result = strategy.check(input);
+        boolean result = check(input, 0, input.length() - 1);
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + result);
-    }
-}
-
-/* Strategy Interface */
-interface PalindromeStrategy {
-    boolean check(String input);
-}
-
-/* Stack Strategy */
-class StackStrategy implements PalindromeStrategy {
-
-    public boolean check(String input) {
-
-        Stack<Character> stack = new Stack<>();
-
-        for(char c : input.toCharArray())
-            stack.push(c);
-
-        for(char c : input.toCharArray()){
-            if(c != stack.pop())
-                return false;
-        }
-
-        return true;
-    }
-}
-
-/* Deque Strategy */
-class DequeStrategy implements PalindromeStrategy {
-
-    public boolean check(String input) {
-
-        Deque<Character> deque = new ArrayDeque<>();
-
-        for(char c : input.toCharArray())
-            deque.add(c);
-
-        while(deque.size() > 1){
-            if(deque.removeFirst() != deque.removeLast())
-                return false;
-        }
-
-        return true;
     }
 }
