@@ -1,20 +1,21 @@
 void main() {
-    String input = "radar";
+    String input = "noon";
 
-    char[] chars = input.toCharArray();
+    Stack<Character> stack = new Stack<>();
 
-    int start = 0;
-    int end = chars.length - 1;
+    // Push all characters
+    for (char c : input.toCharArray()) {
+        stack.push(c);
+    }
 
     boolean isPalindrome = true;
 
-    while (start < end) {
-        if (chars[start] != chars[end]) {
+    // Pop and compare
+    for (char c : input.toCharArray()) {
+        if (c != stack.pop()) {
             isPalindrome = false;
             break;
         }
-        start++;
-        end--;
     }
 
     System.out.println("Input : " + input);
